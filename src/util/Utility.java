@@ -24,9 +24,6 @@ public class Utility {
 
         String link = base + nowStr + ".xml";
 
-
-
-
         return link;
     }
 

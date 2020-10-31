@@ -4,12 +4,15 @@
 
 package database;
 
+import model.Valute;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ListIterator;
 
 import static java.sql.Date.valueOf;
 
@@ -50,4 +53,47 @@ public class DatabaseQueries {
 
         }
     }
+
+
+    // Function for inserting information about seeds => for DOM Parser
+    public static void insertCurrencySaxStaxParser(List<Valute> currencyNodeList) throws SQLException {
+
+
+
+        Database database = new Database();
+        String sql;
+
+        try {
+            sql = "insert into currency( id, code, nominal, name, value, currency_date)" +
+                    " values (CURRENCY_SEQ.nextval, ?, ?, ?, ?, ?)";
+
+
+            ListIterator<Valute> currencyIterator = currencyNodeList.listIterator();
+
+            while(currencyIterator.hasNext()){
+
+                Valute temp = currencyIterator.next();
+
+                database.setPs(database.getConnection().prepareStatement(sql));
+
+                database.getPs().setString(1, temp.getCode());
+                database.getPs().setInt(2, Integer.parseInt(temp.getNominal()));
+                database.getPs().setString(3,temp.getName());
+                database.getPs().setBigDecimal(4,  temp.getValue());
+                database.getPs().setDate(5, valueOf(temp.getCurrencyDate()));
+
+
+
+                database.getPs().executeUpdate();
+                database.getConnection().commit();
+            }
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            database.close();
+
+        }
+    }
+
 }
