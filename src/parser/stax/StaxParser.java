@@ -10,25 +10,21 @@ import model.Valute;
 import util.Utility;
 
 import javax.xml.stream.*;
-import javax.xml.stream.events.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class StaxParser {
 
-    public static void main(String[] args) {
+    public static void staxParser(LocalDate data) {
         try {
-            URL xml = new URL(Utility.createLink());
+            URL xml = new URL(Utility.createLink(data));
             InputStream in = xml.openStream();
             XMLInputFactory factory = XMLInputFactory.newFactory();
             XMLStreamReader reader = factory.createXMLStreamReader(in);

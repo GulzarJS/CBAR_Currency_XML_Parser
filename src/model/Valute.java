@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 public class Valute {
 
+    private int id;
     private String code;
     private String nominal;
     private String name;
@@ -17,6 +18,14 @@ public class Valute {
 
 
     public Valute() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCode() {

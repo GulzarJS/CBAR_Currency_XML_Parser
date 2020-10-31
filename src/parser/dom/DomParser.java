@@ -19,22 +19,20 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class DomParser {
 
-    public static void main(String[] args) {
+    public static void domParser(LocalDate date){
 
         try {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(Utility.createLink());
+            Document document = builder.parse(Utility.createLink(date));
 
 
             NodeList root = document.getElementsByTagName("ValType");
-            List<Valute> currencyList = new ArrayList<>();
 
             for (int j = 0; j < root.getLength(); j++) {
 

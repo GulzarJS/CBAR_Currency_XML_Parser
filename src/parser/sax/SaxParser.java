@@ -15,18 +15,17 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
+import java.time.LocalDate;
 import java.util.List;
-import java.util.ListIterator;
 
 public class SaxParser {
 
-    public static void main(String[] args) {
+    public static void saxParser(LocalDate date) {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             javax.xml.parsers.SAXParser parser = factory.newSAXParser();
 
-            String xml = Utility.createLink();
+            String xml = Utility.createLink(LocalDate.now());
             CurrencySAXContentHandler handler = new CurrencySAXContentHandler(50);
             parser.parse(xml, handler);
 

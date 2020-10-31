@@ -12,14 +12,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Utility {
 
-    public static String createLink(){
+    public static String createLink(LocalDate date){
 
-        String base = "https://www.cbar.az/currencies/";
-
-        LocalDate now = LocalDate.now();
+        String base = "https://www.cbar.az/currencies/";;
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String nowStr = now.format(formatter);
+        String nowStr = date.format(formatter);
 
 
         String link = base + nowStr + ".xml";
